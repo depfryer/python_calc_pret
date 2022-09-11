@@ -118,7 +118,7 @@ class pret:
         interet_du_mois = restant_a_payer*(self._taux_annuel/12)
         interet_payer += interet_du_mois
         
-        mois.append((mois_en_cours+1, round(restant_a_payer,2), round(restant_a_payer,2), round(interet_du_mois,2)))
+        mois.append((mois_en_cours, round(restant_a_payer,2), round(restant_a_payer,2), round(interet_du_mois,2)))
         return mois, interet_payer
 
     def calcul_dernier_mois(self):
