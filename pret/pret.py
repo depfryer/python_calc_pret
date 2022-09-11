@@ -87,11 +87,14 @@ class pret:
             restant_a_payer -= charge_mensuel - interet_du_mois
         return mois
 
-    def remboursement_en_avance(self, tableau_remboursement):
-        m,r = [],[]
+    def remboursement_en_avance(self, tableau_remboursement, changement_mensualite):
+        m,r,p, y = [],[], [], []
         for a in tableau_remboursement:
             m.append(a[0])
             r.append(a[1])
+        for a in changement_mensualite:
+            p.append(a[0])
+            y.append(a[1])           
         restant_a_payer = self._valeur_initial
         charge_mensuel = round(self._mensualite, 2)
         mois=[]
@@ -102,7 +105,9 @@ class pret:
             if mois_en_cours in m:
                 index = m.index(mois_en_cours)
                 restant_a_payer=restant_a_payer - r[index]
-
+            if mois_en_cours in p:
+                index = p.index(mois_en_cours)
+                charge_mensuel= y[index]
             # calcul des interet 
             interet_du_mois = round(restant_a_payer*(self._taux_annuel/12), 2)
             interet_payer += interet_du_mois
