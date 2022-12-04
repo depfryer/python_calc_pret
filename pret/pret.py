@@ -87,33 +87,24 @@ class pret:
             restant_a_payer -= charge_mensuel - interet_du_mois
         return mois
 
-    def remboursement_en_avance(self, tableau_remboursement, changement_mensualite):
-        m,r,p, y = [],[], [], []
-        for a in tableau_remboursement:
-            m.append(a[0])
-            r.append(a[1])
-        for a in changement_mensualite:
-            p.append(a[0])
-            y.append(a[1])           
-        restant_a_payer = self._valeur_initial
+    def remboursement_en_avance(self, tableau_remboursement:list, changement_mensualite:dict):
         charge_mensuel = round(self._mensualite, 2)
+        restant_a_payer = self._valeur_initial
         mois=[]
         mois_en_cours = 0
         interet_payer =0
         while charge_mensuel <= restant_a_payer:
             # on regarde si un changement a eu lieu au cours du mois
-            if mois_en_cours in m:
-                index = m.index(mois_en_cours)
-                restant_a_payer=restant_a_payer - r[index]
-            if mois_en_cours in p:
-                index = p.index(mois_en_cours)
-                charge_mensuel= y[index]
+            rembousement_avance = tableau_remboursement.get(mois_en_cours, 0)
+            restant_a_payer -= rembousement_avance
+            charge_mensuel = changement_mensualite.get(mois_en_cours, charge_mensuel)
+
             # calcul des interet 
             interet_du_mois = round(restant_a_payer*(self._taux_annuel/12), 2)
             interet_payer += interet_du_mois
             # on rajoute dans le tableau la mensualité payer
             mois.append(
-                (mois_en_cours, restant_a_payer, charge_mensuel, interet_du_mois)
+                (mois_en_cours, restant_a_payer, charge_mensuel + rembousement_avance, interet_du_mois)
             )
             # actualisation des données pour le mois suivant
             restant_a_payer -= round(charge_mensuel - interet_du_mois, 2)

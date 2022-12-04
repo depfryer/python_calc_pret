@@ -14,29 +14,30 @@ print("mensualité prevu", round(a._mensualite, 2))
 print('='*30, '\n')
 
 
-tableau_remboursement = [
-    (0, -3000),
-]
-tableau_mensualite = [
-    (0, 100),
-]
+tableau_remboursement = {
+    0: -3000, #septembre 2022
+    1: 100, # novembre 2022
+}
+tableau_mensualite = {
+    0: 100,
+}
 mois_debut = 9
 annee_debut = 2022
 
 r, interet_payer = a.remboursement_en_avance(tableau_remboursement, tableau_mensualite)
 
 
-table1 = BeautifulTable()
-table1.columns.header = ["MOIS", "changement"]
-for i in tableau_remboursement:
-    table1.rows.append(i)
+# table1 = BeautifulTable()
+# table1.columns.header = ["MOIS", "changement"]
+# for i in tableau_remboursement:
+#     table1.rows.append(i)
 
 
 
-table2 = BeautifulTable()
-table2.columns.header = ["MOIS", "changement"]
-for i in tableau_mensualite:
-    table2.rows.append(i)
+# table2 = BeautifulTable()
+# table2.columns.header = ["MOIS", "changement"]
+# for i in tableau_mensualite:
+#     table2.rows.append(i)
 
 
 table = BeautifulTable()
@@ -62,10 +63,10 @@ for i in r:
     if(a%12 ==1 ):
         annee_debut +=1
 
-print('changement du capital')
-print(table1)
+# print('changement du capital')
+# print(table1)
 
-print('changement des mensualité')
-print(table2)
+# print('changement des mensualité')
+# print(table2)
 print(table)
 print('interet finalement payer : ', round(interet_payer, 2))
