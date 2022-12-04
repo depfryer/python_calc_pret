@@ -20,4 +20,4 @@ class estimation_pret:
         return ((log(mensualite)- log(mensualite - interet * emprunt))/ (log(1+interet)))
 
     def pret_max_en_fonction_du_salaire(salaire_net:int, interet_annuel:float,  duree_annee:int):
-        return estimation_pret.emprunt_max_possible(interet_annuel, salaire_net*.30, duree_annee*12)
+        return estimation_pret.emprunt_max_possible(interet_annuel, salaire_net*.35, duree_annee*12)
