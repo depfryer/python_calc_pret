@@ -4,7 +4,7 @@ from pret import estimation_pret
 import locale
 locale.setlocale(locale.LC_ALL, '')  # Use '' for auto, or force e.g. to 'en_US.UTF-8'
 
-
+# la durée max du pret entre 40 mois et 400 mois
 x = [a for a in range(40, 400, 10)]
 y = []
 
