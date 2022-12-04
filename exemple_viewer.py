@@ -4,7 +4,7 @@ from pret import estimation_pret
 import locale
 locale.setlocale(locale.LC_ALL, '')  # Use '' for auto, or force e.g. to 'en_US.UTF-8'
 
-
+# on fait une liste de revenu entre 1400€ et 5000€ par tranche de 25€
 x = [a for a in range(1400, 5000, 25)]
 y = []
 y2 = []
